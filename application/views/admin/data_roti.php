@@ -94,18 +94,18 @@
                                       <input class="form-control  mb-3" type="text" name="nama_roti" value="<?= $show['nama_roti']; ?>" placeholder="Nama roti">
                                       <?= form_error('nama_roti', '<div class="text-danger">', '</div>'); ?>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                       <label for="select2SinglePlaceholder">Periode Minggu Ke-</label>
-                                      <input class="form-control  mb-3" type="number" name="minggu" value="<?= $show['minggu']; ?>" placeholder="Minggu ke-">
+                                      <input class="form-control  mb-3" type="number" name="minggu" value="<?= $show['tgl']; ?>" placeholder="Minggu ke-">
                                       <?= form_error('nama_roti', '<div class="text-danger">', '</div>'); ?>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group" id="simple-date1">
-                                    <label for="simpleDataInput">Tanggal</label>
+                                    <label for="simpleDataInput">Periode</label>
                                       <div class="input-group date">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="tanggal" value="<?= $show['tgl'];?>" id="simpleDataInput">
+                                        <input type="text" class="form-control" name="periode" value="<?= $show['tgl'];?>" id="simpleDataInput">
                                         <?= form_error('tanggal', '<div class="text-danger">', '</div>'); ?>
                                       </div>
                                   </div>

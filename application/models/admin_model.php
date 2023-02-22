@@ -114,6 +114,18 @@ class Admin_model extends CI_Model {
         $query = $this->db->get_where('user', array('id_user' => $id));
         return $query->row_array();
     }
+
+    function edit_user($id)
+    {
+        $data   = [
+            'id_user'           => $id,
+            'username'         => $this->input->post('username'),
+            'email'             => $this->input->post('email'),
+            'password'           =>base64_encode( $this->input->post('password')),
+            'active'               => $this->input->post('active'),
+        ];
+        $this->db->update('user', $data, array('id_user' => $data['id_user']));
+    }
     
     public function activate($data, $id)
     {
@@ -127,8 +139,7 @@ class Admin_model extends CI_Model {
             'id_roti'           => $id,
             'nama_roti'         => $this->input->post('nama_roti'),
             'id_jenis_roti'     => $this->input->post('jenis_roti'),
-            'tgl'               => $this->input->post('tanggal'),
-            'minggu'            => $this->input->post('minggu'),
+            'tgl'               => $this->input->post('periode'),
             'jumlah'            => $this->input->post('jumlah')
         ];
         $this->db->update('data_roti', $data, array('id_roti' => $data['id_roti']));

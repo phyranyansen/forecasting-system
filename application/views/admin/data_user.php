@@ -65,9 +65,10 @@
                                       Edit Data User
                                     </div>
                                     <div class="modal-body">
-                                    <form action="<?= base_url('admin/adduser'); ?>" method="post">
+                                    <form action="<?= base_url('admin/edit_user'); ?>" method="post">
                                     <div class="form-group">
                                       <label for="select2SinglePlaceholder">Username</label>
+                                      <input type="hidden" name="id_user" value="<?= $j['id_user']; ?>" id="">
                                       <input class="form-control  mb-3" type="text" name="username" value="<?= $j['username'] ?>" placeholder="Username">
                                       <?= form_error('username', '<div class="text-danger">', '</div>'); ?>
                                     </div>
@@ -101,11 +102,6 @@
                                   </div>
                                 </div>
                               </div>
-
-
-
-
-
                       <!-- Modal delete -->
                       <div class="modal fade" id="deleteModal<?= $j['id_user'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
                                 aria-hidden="true">

@@ -89,8 +89,7 @@ class Admin extends CI_Controller
     {
         $this->form_validation->set_rules('nama_roti', 'Nama Roti', 'required');
         $this->form_validation->set_rules('jenis_roti', 'Jenis Roti', 'required');
-        $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
-        $this->form_validation->set_rules('minggu', 'Periode ke-', 'required');
+        $this->form_validation->set_rules('periode', 'Periode ke-', 'required');
         $this->form_validation->set_rules('jumlah', 'Jumlah', 'required');
         
         if ($this->form_validation->run()) {
@@ -189,6 +188,26 @@ class Admin extends CI_Controller
             echo "<script>alert('Data berhasil dihapus!');</script>";
             echo "<script>window.location='".site_url('admin/roti')."'</script>";
         }
+    }
+
+    function edit_user()
+    {
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        
+        if ($this->form_validation->run()) {
+            $id = $_POST['id_user'];
+            $this->admin_model->edit_user($id);
+            echo "<script>alert('Data berhasil diupdate!');</script>";
+            echo "<script>window.location='".site_url('data-user')."'</script>";
+
+        }else{
+            echo "<script>alert('Data gagal diupdate!');</script>";
+            echo "<script>window.location='".site_url('data-user')."'</script>";
+        
+        }
+      
     }
 
     function addjenis()
