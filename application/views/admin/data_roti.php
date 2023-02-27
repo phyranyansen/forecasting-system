@@ -12,12 +12,8 @@
                   </div>
                 
                   <div class="table-responsive mailbox-messages p-3">
-                  <table id="example1" class="table table-bordered table-striped">
+                  <table  class="table table-bordered table-striped" id="tableroti">
                     <thead>
-                      <tr>
-                        <th style="text-align:center">
-                        <input type="checkbox" class="btn btn-default btn-sm checkbox-toggle" id="group1">
-                        </th>
                         <th>No.</th>
                         <th>Nama Roti</th>
                         <th>Jenis Roti</th>
@@ -28,7 +24,7 @@
                     </thead>
                     <tfoot>
                       <tr>
-                        <th></th>
+                       
                         <th>No.</th>
                         <th>Nama Roti</th>
                         <th>Jenis Roti</th>
@@ -37,106 +33,7 @@
                         <th>Action</th>
                       </tr>
                     </tfoot>
-                    <tbody>
-                      <?php 
-                      $no =1;
-                      $no1 =1;
-                      
-                      foreach($roti as $show) { ?>
- 
-                       <tr>
-                        <td style="text-align:center">
-                        <input type="checkbox" class="check-item group1" name="id_roti[]" value="<?=$show['id_roti']?>">
-                       </td>
-                        <td><?= $no++; ?></td>
-                        <td><?= $show['nama_roti']; ?></td>
-                        <td><?= $show['nama_jenis']; ?></td>
-                        <td><?= $show['tgl']; ?></td>
-                        <td><?= $show['jumlah']; ?></td>
-                        <td style="width:15%"> 
-                        <a href="javascript:void(0);" data-toggle="modal" data-target="#deleteModal<?= $show['id_roti']; ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a> 
-                        <a href="" data-toggle="modal" data-target="#EditModal<?= $show['id_roti'];?>" class="btn btn-primary"><i class="fas fa-edit"></i></a> 
-                      </td>
-                      </form>
-                        </tr>
-
-                         <!-- Modal delete -->
-                      <div class="modal fade" id="deleteModal<?= $show['id_roti'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
-                                aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-body">
-                                      <p>Are you sure, you want to delete data?</p>
-                                      <p style="color:red"><small>Data: [<?= $show['nama_roti'] ?>, <?= $show['jumlah'] ?>, <?= $show['tgl'] ?>, Periode ke-<?= $show['minggu'] ?>]</small></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <a href="<?= base_url('admin/delete_roti/'.$show['id_roti']); ?>" class="btn btn-warning">Delete</a>
-                                      <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-
-
-                        <!-- Modal edit -->
-                     <div class="modal fade" id="EditModal<?= $show['id_roti'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      Edit Data
-                                    </div>
-                                    <div class="modal-body">
-                                    <form action="<?= base_url('admin/edit_roti'); ?>" method="post">
-                                    <div class="form-group">
-                                      <label for="select2SinglePlaceholder">Nama Roti</label>
-                                      <input type="hidden" name="id_roti" value="<?= $show['id_roti']; ?>" id="">
-                                      <input class="form-control  mb-3" type="text" name="nama_roti" value="<?= $show['nama_roti']; ?>" placeholder="Nama roti">
-                                      <?= form_error('nama_roti', '<div class="text-danger">', '</div>'); ?>
-                                    </div>
-                                    <!-- <div class="form-group">
-                                      <label for="select2SinglePlaceholder">Periode Minggu Ke-</label>
-                                      <input class="form-control  mb-3" type="number" name="minggu" value="<?= $show['tgl']; ?>" placeholder="Minggu ke-">
-                                      <?= form_error('nama_roti', '<div class="text-danger">', '</div>'); ?>
-                                    </div> -->
-                                    <div class="form-group" id="simple-date1">
-                                    <label for="simpleDataInput">Periode</label>
-                                      <div class="input-group date">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="periode" value="<?= $show['tgl'];?>" id="simpleDataInput">
-                                        <?= form_error('tanggal', '<div class="text-danger">', '</div>'); ?>
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="touchSpin3">Jumlah</label>
-                                    <input type="number" name="jumlah" value="<?= $show['jumlah']; ?>" class="form-control">
-                                    <?= form_error('jumlah', '<div class="text-danger">', '</div>'); ?>
-                                  </div>
-                                    <div class="form-group">
-                                      <label for="select2SinglePlaceholder">Jenis Roti</label>
-                                      <select class="select2-single-placeholder form-control" name="jenis_roti" id="select2SinglePlaceholder">
-                                      <?= form_error('jenis_roti', '<div class="text-danger">', '</div>'); ?>
-                                      <option value="<?= $show['id_jenis_roti']; ?>"><?= $show['nama_roti']; ?></option>
-                                      <?php foreach($data as $show) { ?>
-                                        <option value="<?= $show['id_jenis'] ?>"><?= $show['nama_jenis'] ?></option>
-                                        <?php } ?>
-                                      </select>
-                                    </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="submit" class="btn btn-success" >Save <i class="fas fa-save"></i></button>
-                                      <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                  </form>
-                                  </div>
-                                </div>
-                              </div>
-
-                        
-                        <?php } ?>
-                    </tbody>
+                    
                   </table>
                
                   </div>
@@ -171,10 +68,6 @@
                                   </div>
                                 </div>
                               </div>
-
-
-                               
-
                                <!-- Modal delete -->
         <div class="modal fade" id="deleteAllModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
                                 aria-hidden="true">
@@ -220,6 +113,32 @@
         }
       }
     </script>
+    
+    <script>
+      // Serverside Datatable
+  $(document).ready(function(){
+    table = $('#tableroti').DataTable({
+        responsive: true,
+        "destroy": true,
+        "processing": true,
+        "serverSide": true,
+        "order": [],
+ 
+        "ajax": {
+            "url": "<?= site_url('admin/ambildata') ?>",
+            "type": "POST"
+        },
+ 
+ 
+        "columnDefs": [{
+            "targets": [0],
+            "orderable": false,
+            "width": 5
+        }],
+ 
+    });
+  })
+      </script>
     
 
                                

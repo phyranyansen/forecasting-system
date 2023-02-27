@@ -485,7 +485,38 @@ function forecasting_json()
     echo json_encode($record);
 }
 
-
+public function ambildata()
+    {
+        if ($this->input->is_ajax_request() == true) {
+            $this->load->model('admin_model', 'member');
+            $list = $this->member->get_datatables();
+            $data = array();
+            $no = $_POST['start'];
+            foreach ($list as $field) {
+                
+                $no++;
+                $row = array();
+               
+                $row[] = $no;
+                $row[] = $field->nama_roti;
+                $row[] = $field->id_jenis_roti;
+                $row[] = $field->tgl;
+                $row[] = $field->jumlah;
+                $data[] = $row;
+            }
+ 
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => $this->member->count_all(),
+                "recordsFiltered" => $this->member->count_filtered(),
+                "data" => $data,
+            );
+            //output dalam format JSON
+            echo json_encode($output);
+        } else {
+            exit('Maaf data tidak bisa ditampilkan');
+        }
+    }
    
 
 
